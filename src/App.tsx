@@ -1,8 +1,10 @@
+import { CoreAdmin } from "./core-admin/core";
+
 function App() {
   return (
-    <div>
-      <div>Vite Admin</div>
-    </div>
+    <CoreAdmin>
+      <div>Vite.js + Chakra + Admin</div>
+    </CoreAdmin>
   );
 }
 

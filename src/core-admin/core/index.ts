@@ -1,0 +1,1 @@
+export { CoreAdmin } from "./Admin";

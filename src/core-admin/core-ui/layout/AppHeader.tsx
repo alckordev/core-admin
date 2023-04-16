@@ -1,4 +1,4 @@
-import { Box, Flex, IconButton } from "@chakra-ui/react";
+import { Box, Flex, IconButton, useColorModeValue } from "@chakra-ui/react";
 import { IconMenu } from "@tabler/icons-react";
 import { Logo } from "./Logo";
 import { NotificationMenu } from "./NotificationMenu";
@@ -6,15 +6,18 @@ import { ToggleThemeButton } from "./Theme";
 import { UserMenu } from "./UserMenu";
 
 export const AppHeader = (props: AppHeaderProps) => {
+  const bgColor = useColorModeValue("white", "gray.800");
+
   return (
     <Box
       as="header"
-      bg="gray.868"
+      bg={bgColor}
       boxShadow="0 1px 1px rgba(0, 0, 0, .08)"
       left={0}
       position="fixed"
       right={0}
       top={0}
+      zIndex="1002"
     >
       <Flex
         align="center"

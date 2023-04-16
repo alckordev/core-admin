@@ -1,11 +1,19 @@
-import { Box, Container, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { IconHeartFilled } from "@tabler/icons-react";
 
 export const AppFooter = (props: AppFooterProps) => {
+  const bgColor = useColorModeValue("white", "gray.800");
+
   return (
     <Box
       as="footer"
-      bg="gray.900"
+      bg={bgColor}
       bottom={0}
       boxShadow="0 1px 1px rgba(0, 0, 0, .08)"
       color="gray.500"

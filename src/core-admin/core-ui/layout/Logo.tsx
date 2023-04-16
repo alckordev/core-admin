@@ -1,4 +1,4 @@
-import { Box, Image, Link, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
 
 export interface LogoProps {
   small?: string;
@@ -9,13 +9,14 @@ export const Logo = (props: LogoProps) => {
   const { small, medium } = props;
 
   return (
-    <Box
+    <Flex
+      align="center"
       bg="gray.900"
+      justify="center"
       px={{ base: 0, md: 6 }}
-      textAlign="center"
       width={{ base: 70, md: 250 }}
     >
-      <Link href="/" display="block" lineHeight="70px">
+      <Link href="/" display="block">
         <Text as="span" display={{ base: "inline-block", md: "none" }}>
           <Image src={small} height="22px" />
         </Text>
@@ -23,7 +24,7 @@ export const Logo = (props: LogoProps) => {
           <Image src={medium} height="24px" />
         </Text>
       </Link>
-    </Box>
+    </Flex>
   );
 };
 

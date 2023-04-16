@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Link, Text } from "@chakra-ui/react";
+import { Flex, Image, Link, Text } from "@chakra-ui/react";
 
 export interface LogoProps {
   small?: string;
@@ -15,12 +15,21 @@ export const Logo = (props: LogoProps) => {
       justify="center"
       px={{ base: 0, md: 6 }}
       width={{ base: 70, md: 250 }}
+      transition="all .3s ease-in-out"
     >
       <Link href="/" display="block">
-        <Text as="span" display={{ base: "inline-block", md: "none" }}>
+        <Text
+          as="span"
+          display={{ base: "inline-block", md: "none" }}
+          transition="all .3s ease-in-out"
+        >
           <Image src={small} height="22px" />
         </Text>
-        <Text as="span" display={{ base: "none", md: "inline-block" }}>
+        <Text
+          as="span"
+          display={{ base: "none", md: "inline-block" }}
+          transition="all .3s ease-in-out"
+        >
           <Image src={medium} height="24px" />
         </Text>
       </Link>

@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { css, Global } from "@emotion/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { useTheme } from "./useTheme";
 
@@ -17,7 +18,18 @@ export const ThemeProvider = ({
 
   console.log("ThemeProvider", theme);
 
-  return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
+  return (
+    <ChakraProvider theme={theme}>
+      <Global
+        styles={css`
+          body {
+            position: static;
+          }
+        `}
+      />
+      {children}
+    </ChakraProvider>
+  );
 };
 
 export interface ThemeProviderProps {

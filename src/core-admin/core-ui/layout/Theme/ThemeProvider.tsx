@@ -15,6 +15,8 @@ export const ThemeProvider = ({
 }: ThemeProviderProps) => {
   const theme = useTheme(themeOverride);
 
+  console.log("ThemeProvider", theme);
+
   return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
 };
 

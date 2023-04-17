@@ -4,6 +4,7 @@ export * from "./AppHeader";
 export * from "./AppSidebar";
 export * from "./Layout";
 export * from "./Logo";
+export * from "./Nav";
 export * from "./NotificationMenu";
 export * from "./Theme";
 export * from "./UserMenu";

@@ -1,7 +1,12 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
+import { IconDashboard } from "@tabler/icons-react";
+import { NavItem, NavTitle } from "./Nav";
 
 export const AppSidebar = (props: AppSidebarProps) => {
   const { navigation } = props;
+
+  console.log("IconDashboard", IconDashboard);
+  console.log("typeof IconDashboard", typeof IconDashboard);
 
   return (
     <Box
@@ -16,7 +21,13 @@ export const AppSidebar = (props: AppSidebarProps) => {
       transition="all .3s ease-in-out"
       zIndex="1001"
     >
-      <Box>SB</Box>
+      <Box>
+        <Stack spacing={0} direction="column">
+          <NavTitle name="Menu" />
+          <NavItem name="Dashboard" to="/" icon={IconDashboard} />
+          <NavTitle name="Pages" />
+        </Stack>
+      </Box>
     </Box>
   );
 };

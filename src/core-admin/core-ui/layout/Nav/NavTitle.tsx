@@ -10,8 +10,8 @@ export const NavTitle = (props: NavTitleProps) => {
       fontWeight="semibold"
       letterSpacing=".05em"
       opacity={0.5}
-      px="12px"
-      py="20px"
+      px={3}
+      py={5}
       pointerEvents="none"
       textTransform="uppercase"
     >

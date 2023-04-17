@@ -1,12 +1,17 @@
+import { useState } from "react";
 import { Box, Stack } from "@chakra-ui/react";
 import { IconDashboard } from "@tabler/icons-react";
-import { NavItem, NavTitle } from "./Nav";
+import { NavContext, NavItem, NavTitle } from "./Nav";
 
 export const AppSidebar = (props: AppSidebarProps) => {
   const { navigation } = props;
 
-  console.log("IconDashboard", IconDashboard);
-  console.log("typeof IconDashboard", typeof IconDashboard);
+  const [visibleGroup, setVisibleGroup] = useState("");
+
+  const navContextValues = {
+    visibleGroup,
+    setVisibleGroup,
+  };
 
   return (
     <Box
@@ -22,10 +27,17 @@ export const AppSidebar = (props: AppSidebarProps) => {
       zIndex="1001"
     >
       <Box>
-        <Stack spacing={0} direction="column">
-          <NavTitle name="Menu" />
-          <NavItem name="Dashboard" to="/" icon={IconDashboard} />
-          <NavTitle name="Pages" />
+        <Stack spacing={0} direction="column" pt={3} pb={7}>
+          <NavContext.Provider value={navContextValues}>
+            <NavTitle name="Menu" />
+            <NavItem name="Dashboard" to="/" icon={IconDashboard} />
+            <NavItem
+              name="Test"
+              to="/test"
+              badge={{ color: "cyan", text: "New" }}
+            />
+            <NavTitle name="Pages" />
+          </NavContext.Provider>
         </Stack>
       </Box>
     </Box>

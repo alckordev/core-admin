@@ -1,3 +1,4 @@
+import { CoreAdminContext } from "../core";
 import { defaultTheme } from "./defaultTheme";
 import { ThemeProvider } from "./layout";
 
@@ -5,8 +6,8 @@ export const AdminContext = (props: any) => {
   const { theme = defaultTheme, children, ...rest } = props;
 
   return (
-    <div {...rest}>
+    <CoreAdminContext {...rest}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </div>
+    </CoreAdminContext>
   );
 };

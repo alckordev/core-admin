@@ -1,38 +1,41 @@
 import { ComponentType } from "react";
-import { AdminContext, AdminUI } from "../core-ui";
-import { CoreAdminContextProps } from "./AdminContext";
-import { CoreAdminUIProps } from "./AdminUI";
+import { CoreAdminProps } from "./core";
+import { AdminContext, AdminUI } from "./core-ui";
 
-export const CoreAdmin = (props: CoreAdminProps) => {
+export const Admin = (props: AdminProps) => {
   const {
     basename,
+    catchAll,
     children,
     dashboard,
-    catchAll,
     layout,
     loading,
-    authCallbackPage,
     loginPage,
+    authCallbackPage,
+    notification,
     requireAuth,
     ready,
-    title,
     theme,
-    notification,
+    title = "Core Admin",
   } = props;
+
+  if (loginPage === true && process.env.NODE_ENV !== "production") {
+    console.warn("login page?");
+  }
 
   return (
     <AdminContext basename={basename} theme={theme}>
       <AdminUI
         layout={layout}
-        catchAll={catchAll}
         dashboard={dashboard}
+        catchAll={catchAll}
+        title={title}
         loading={loading}
         loginPage={loginPage}
         authCallbackPage={authCallbackPage}
+        notification={notification}
         requireAuth={requireAuth}
         ready={ready}
-        title={title}
-        notification={notification}
       >
         {children}
       </AdminUI>
@@ -40,9 +43,7 @@ export const CoreAdmin = (props: CoreAdminProps) => {
   );
 };
 
-export interface CoreAdminProps
-  extends CoreAdminContextProps,
-    CoreAdminUIProps {
+export interface AdminProps extends CoreAdminProps {
   theme?: object;
   notification?: ComponentType;
 }

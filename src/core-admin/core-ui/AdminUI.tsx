@@ -1,5 +1,5 @@
 import { ComponentType, Fragment } from "react";
-import { CoreAdminUI, CoreAdminUIProps } from "../core/AdminUI";
+import { CoreAdminUI, CoreAdminUIProps } from "../core";
 import { AuthCallback, LoginPage } from "./auth";
 import {
   Layout as DefaultLayout,

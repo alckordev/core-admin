@@ -11,7 +11,7 @@ import {
   TitleComponent,
 } from "../types";
 import { Ready } from "../utils";
-import { CoreAdminRoutes } from "./AdminRoutes";
+import { CoreAdminRoutes } from "./CoreAdminRoutes";
 
 const DefaultLayout = ({ children }: CoreLayoutProps) => (
   <Fragment>{children}</Fragment>

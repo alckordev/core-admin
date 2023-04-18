@@ -1,9 +1,9 @@
-import { AdminRouter, CoreAdmin, Layout } from "./core-admin";
+import { AdminRouter, CoreAdmin, Layout, Admin } from "./core-admin";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <CoreAdmin>
+    <Admin>
       {/* <AdminRouter>
         <Routes>
           <Route
@@ -20,7 +20,7 @@ function App() {
           />
         </Routes>
       </AdminRouter> */}
-    </CoreAdmin>
+    </Admin>
   );
 }
 

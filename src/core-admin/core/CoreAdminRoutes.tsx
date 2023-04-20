@@ -14,11 +14,11 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
     layout: Layout,
     catchAll: CatchAll,
     children,
+    dashboard,
     loading: LoadingPage,
     requireAuth,
     ready: Ready,
     title,
-    dashboard,
   } = props;
 
   const {
@@ -36,18 +36,23 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
     }
   }, [requireAuth]);
 
+  if (status === "empty") {
+    return <Ready />;
+  }
+
   console.log("CoreAdminRoutes > resources", resources);
 
   return (
     <Routes>
       {/* Render custom routes wirhout layout */}
+      {customRoutesWithoutLayout}
       <Route
         path="/*"
         element={
           <Layout>
             <Routes>
-              {/* Render custom routes wirhout layout */}
-              {/* Only for test */}
+              {/* Render custom routes with layout */}
+              {customRoutesWithLayout}
               <Route path="/users/*" element={<Resource />} />
               <Route path="/" element={<h3>Dashboard</h3>} />
               <Route path="*" element={<h3>Catch All</h3>} />
@@ -66,7 +71,7 @@ export interface CoreAdminRoutesProps
   children?: AdminChildren;
   loading: LoadingComponent;
   requireAuth?: boolean;
-  ready?: ComponentType;
+  ready: ComponentType;
 }
 
 /**

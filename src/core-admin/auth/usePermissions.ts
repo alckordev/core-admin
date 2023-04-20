@@ -35,15 +35,11 @@ export const usePermissions = <Permissions = any, Error = any>(
 ) => {
   const authProvider = useAuthProvider();
 
-  console.log("usePermissions > authProvider", authProvider);
-
   const result = useQuery(
     ["auth", "getPermissions", params],
     authProvider ? () => authProvider.getPermissions(params) : async () => [],
     queryParams
   );
-
-  console.log("usePermissions > result", result);
 
   return useMemo(
     () => ({

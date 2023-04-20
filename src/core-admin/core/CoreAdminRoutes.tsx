@@ -1,6 +1,5 @@
-import { ComponentType } from "react";
+import { ComponentType, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Layout } from "../core-ui";
 import {
   AdminChildren,
   CatchAllComponent,
@@ -8,18 +7,36 @@ import {
   LayoutComponent,
   LoadingComponent,
 } from "../types";
+import { useConfigureRouterFromChildren } from "./useConfigureRouterFromChildren";
 
 export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
-  //   const {
-  //     layout: Layout2,
-  //     catchAll: CatchAll,
-  //     children,
-  //     loading: LoadingPage,
-  //     requireAuth,
-  //     ready: Ready,
-  //     title,
-  //     dashboard,
-  //   } = props;
+  const {
+    layout: Layout,
+    catchAll: CatchAll,
+    children,
+    loading: LoadingPage,
+    requireAuth,
+    ready: Ready,
+    title,
+    dashboard,
+  } = props;
+
+  const {
+    customRoutesWithLayout,
+    customRoutesWithoutLayout,
+    resources,
+    status,
+  } = useConfigureRouterFromChildren(children);
+
+  const [canRender, setCanRender] = useState(!requireAuth);
+
+  useEffect(() => {
+    if (requireAuth) {
+      // checkAuth
+    }
+  }, [requireAuth]);
+
+  console.log("CoreAdminRoutes > resources", resources);
 
   return (
     <Routes>

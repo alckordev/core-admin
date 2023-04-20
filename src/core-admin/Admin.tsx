@@ -4,9 +4,11 @@ import { AdminContext, AdminUI } from "./core-ui";
 
 export const Admin = (props: AdminProps) => {
   const {
+    authProvider,
     basename,
     catchAll,
     children,
+    dataProvider,
     dashboard,
     layout,
     loading,
@@ -24,7 +26,12 @@ export const Admin = (props: AdminProps) => {
   }
 
   return (
-    <AdminContext basename={basename} theme={theme}>
+    <AdminContext
+      authProvider={authProvider}
+      dataProvider={dataProvider}
+      basename={basename}
+      theme={theme}
+    >
       <AdminUI
         layout={layout}
         dashboard={dashboard}

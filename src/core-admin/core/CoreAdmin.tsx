@@ -5,6 +5,7 @@ export const CoreAdmin = (props: CoreAdminProps) => {
   const {
     basename,
     children,
+    dataProvider,
     dashboard,
     catchAll,
     layout,
@@ -16,7 +17,7 @@ export const CoreAdmin = (props: CoreAdminProps) => {
   } = props;
 
   return (
-    <CoreAdminContext basename={basename}>
+    <CoreAdminContext dataProvider={dataProvider} basename={basename}>
       <CoreAdminUI
         layout={layout}
         dashboard={dashboard}

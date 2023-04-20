@@ -1,4 +1,4 @@
-import { ComponentType, useEffect, useState } from "react";
+import { Children, ComponentType, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import {
   AdminChildren,
@@ -36,11 +36,21 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
     }
   }, [requireAuth]);
 
+  console.log("CoreAdminRoutes > resources", resources);
+  console.log("CoreAdminRoutes > status", status);
+
   if (status === "empty") {
     return <Ready />;
   }
 
-  console.log("CoreAdminRoutes > resources", resources);
+  if (status === "loading" || !canRender) {
+    return (
+      <Routes>
+        {customRoutesWithoutLayout}
+        <Route path="*" element={<LoadingPage />} />
+      </Routes>
+    );
+  }
 
   return (
     <Routes>
@@ -53,7 +63,13 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
             <Routes>
               {/* Render custom routes with layout */}
               {customRoutesWithLayout}
-              <Route path="/users/*" element={<Resource />} />
+              {Children.map(resources, (resource) => (
+                <Route
+                  key={resource.props.name}
+                  path={`${resource.props.name}/*`}
+                  element={resource}
+                />
+              ))}
               <Route path="/" element={<h3>Dashboard</h3>} />
               <Route path="*" element={<h3>Catch All</h3>} />
             </Routes>
@@ -72,16 +88,4 @@ export interface CoreAdminRoutesProps
   loading: LoadingComponent;
   requireAuth?: boolean;
   ready: ComponentType;
-}
-
-/**
- * @deprecate only for test
- */
-function Resource() {
-  return (
-    <Routes>
-      <Route path="/" element={<h3>User</h3>} />
-      <Route path="/:id" element={<h3>User detail</h3>} />
-    </Routes>
-  );
 }

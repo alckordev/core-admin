@@ -1,10 +1,14 @@
-import { Admin } from "./core-admin";
+import { Admin, ListGuesser, Resource } from "./core-admin";
 import { jsonServerProvider } from "./core-admin/data-json-server";
 
 const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 
 function App() {
-  return <Admin dataProvider={dataProvider}></Admin>;
+  return (
+    <Admin dataProvider={dataProvider}>
+      <Resource name="users" list={ListGuesser} />
+    </Admin>
+  );
 }
 
 export default App;

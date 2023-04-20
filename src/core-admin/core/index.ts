@@ -4,6 +4,8 @@ export * from "./CoreAdminRoutes";
 export * from "./CoreAdminUI";
 export * from "./CustomRoutes";
 export * from "./Resource";
+export * from "./ResourceContext";
+export * from "./ResourceContextProvider";
 export * from "./ResourceDefinitionContext";
 export * from "./useConfigureRouterFromChildren";
 export * from "./useResourceDefinitionContext";

@@ -312,7 +312,7 @@ const getRoutesAndResourceFromNodes = (
       );
       resources.push(...customRoutesFromFragment.resources);
     }
-    if ((element.type as any).raName === "CustomRoutes") {
+    if ((element.type as any).customName === "CustomRoutes") {
       const customRoutesElement = element as ReactElement<CustomRoutesProps>;
 
       if (customRoutesElement.props.hasLayout) {
@@ -320,7 +320,7 @@ const getRoutesAndResourceFromNodes = (
       } else {
         customRoutesWithLayout.push(customRoutesElement.props.children);
       }
-    } else if ((element.type as any).raName === "Resources") {
+    } else if ((element.type as any).customName === "Resource") {
       resources.push(element as ReactElement<ResourceProps>);
     }
   });

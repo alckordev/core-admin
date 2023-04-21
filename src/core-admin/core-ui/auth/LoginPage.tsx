@@ -1,3 +1,9 @@
+import { Card, CardBody } from "@chakra-ui/react";
+
 export const LoginPage = () => {
-  return <div>Login Page...</div>;
+  return (
+    <Card>
+      <CardBody>afas</CardBody>
+    </Card>
+  );
 };

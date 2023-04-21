@@ -22,7 +22,9 @@ export const Admin = (props: AdminProps) => {
   } = props;
 
   if (loginPage === true && process.env.NODE_ENV !== "production") {
-    console.warn("login page?");
+    console.warn(
+      "You passed true to the loginPage prop. You must either pass false to disable it or a component class to customize it"
+    );
   }
 
   return (

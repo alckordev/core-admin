@@ -49,6 +49,9 @@ export const CoreAdminContext = (props: CoreAdminContextProps) => {
     [dataProvider]
   );
 
+  console.log("CoreAdminContext > authProvider", authProvider);
+  console.log("CoreAdminContext > finalAuthProvider", finalAuthProvider);
+
   return (
     <AuthContext.Provider value={finalAuthProvider}>
       <DataProviderContext.Provider value={finalDataProvider}>

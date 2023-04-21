@@ -1,5 +1,6 @@
 import { Children, ComponentType, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { defaultAuthParams, useCheckAuth, WithPermissions } from "../auth";
 import {
   AdminChildren,
   CatchAllComponent,
@@ -7,6 +8,8 @@ import {
   LayoutComponent,
   LoadingComponent,
 } from "../types";
+import { useTimeout } from "../utils";
+import { useCreatePath } from "../routing";
 import { useConfigureRouterFromChildren } from "./useConfigureRouterFromChildren";
 
 export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
@@ -21,6 +24,8 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
     title,
   } = props;
 
+  const oneSecondHasPassed = useTimeout(1000);
+
   const {
     customRoutesWithLayout,
     customRoutesWithoutLayout,
@@ -30,11 +35,19 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
 
   const [canRender, setCanRender] = useState(!requireAuth);
 
+  const checkAuth = useCheckAuth();
+
+  const createPath = useCreatePath();
+
   useEffect(() => {
     if (requireAuth) {
-      // checkAuth
+      checkAuth()
+        .then(() => {
+          setCanRender(true);
+        })
+        .catch(() => {});
     }
-  }, [requireAuth]);
+  }, [checkAuth, requireAuth]);
 
   console.log("CoreAdminRoutes > resources", resources);
   console.log("CoreAdminRoutes > status", status);
@@ -47,7 +60,11 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
     return (
       <Routes>
         {customRoutesWithoutLayout}
-        <Route path="*" element={<LoadingPage />} />
+        {oneSecondHasPassed ? (
+          <Route path="*" element={<LoadingPage />} />
+        ) : (
+          <Route path="*" element={null} />
+        )}
       </Routes>
     );
   }
@@ -70,8 +87,25 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
                   element={resource}
                 />
               ))}
-              <Route path="/" element={<h3>Dashboard</h3>} />
-              <Route path="*" element={<h3>Catch All</h3>} />
+              <Route
+                path="/"
+                element={
+                  dashboard ? (
+                    <WithPermissions
+                      authParams={defaultAuthParams}
+                      component={dashboard}
+                    />
+                  ) : resources.length > 0 ? (
+                    <Navigate
+                      to={createPath({
+                        resource: resources[0].props.name,
+                        type: "list",
+                      })}
+                    />
+                  ) : null
+                }
+              />
+              <Route path="*" element={<CatchAll title={title} />} />
             </Routes>
           </Layout>
         }

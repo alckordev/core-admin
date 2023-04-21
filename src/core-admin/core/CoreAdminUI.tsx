@@ -38,8 +38,9 @@ export const CoreAdminUI = (props: CoreAdminUIProps) => {
 
   return (
     <Routes>
+      {/*  */}
       {LoginPage !== false && LoginPage !== true ? (
-        <Route path="/login" element={<h3>Login</h3>} />
+        <Route path="/login" element={createOrGetElement(LoginPage)} />
       ) : null}
 
       {/* LoginCallbackPage */}

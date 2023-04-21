@@ -5,7 +5,7 @@ const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com");
 
 function App() {
   return (
-    <Admin dataProvider={dataProvider}>
+    <Admin dataProvider={dataProvider} requireAuth>
       <Resource name="users" list={ListGuesser} />
     </Admin>
   );

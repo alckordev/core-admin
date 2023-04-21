@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useQueryClient } from "react-query";
 import { Path, useLocation, useNavigate } from "react-router-dom";
-import { useBasename } from "../routing";
+import { removeDoubleSlashes, useBasename } from "../routing";
 import { defaultAuthParams, useAuthProvider } from "./useAuthProvider";
 
 export const useLogout = (): Logout => {
@@ -18,7 +18,9 @@ export const useLogout = (): Logout => {
   const location = useLocation();
   const locationRef = useRef(location);
   const basename = useBasename();
-  const loginUrl = `${basename}/${defaultAuthParams.loginUrl}`;
+  const loginUrl = removeDoubleSlashes(
+    `${basename}/${defaultAuthParams.loginUrl}`
+  );
 
   /**
    * We need the current location to pass in the router state
@@ -41,8 +43,8 @@ export const useLogout = (): Logout => {
       params = {},
       redirectTo = loginUrl,
       redirectToCurrentLocationAfterLogin = true
-    ) => {
-      return authProvider.logout(params).then((redirectToFromProvider) => {
+    ) =>
+      authProvider.logout(params).then((redirectToFromProvider) => {
         if (redirectToFromProvider === false || redirectTo === false) {
           // resetStore();
           queryClient.clear();
@@ -90,8 +92,7 @@ export const useLogout = (): Logout => {
         queryClient.clear();
 
         return redirectToFromProvider;
-      });
-    },
+      }),
     [authProvider, loginUrl, queryClient] // add resetStore
   );
 

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { NavItem } from "./Nav";
 import { DashboardMenuItem } from "./DashboardMenuItem";
+import { ResourceMenuItem } from "./ResourceMenuItem";
 import { useResourceDefinitions } from "../../core/useResourceDedinitions";
 
 export const Menu = (props: MenuProps) => {
@@ -14,11 +14,9 @@ export const Menu = (props: MenuProps) => {
       ) : null,
       ...Object.keys(resources)
         .filter((name) => resources[name].hasList)
-        .map((name) => <NavItem key={name} name={name} to="/" />),
+        .map((name) => <ResourceMenuItem key={name} name={name} />),
     ],
   } = props;
-
-  // console.log("Menu > hasDashboard", hasDashboard);
 
   return children;
 };
@@ -26,5 +24,4 @@ export const Menu = (props: MenuProps) => {
 export interface MenuProps {
   children?: ReactNode;
   hasDashboard?: boolean;
-  //   [key: string]: any;
 }

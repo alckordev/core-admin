@@ -1,17 +1,22 @@
 import { IconDashboard } from "@tabler/icons-react";
 import { useBasename } from "../../routing";
-import { NavItem, NavItemProps } from "./Nav";
+import { MenuItemLink, MenuItemLinkProps } from "./MenuItemLink";
 
 export const DashboardMenuItem = (props: DashboardMenuItemProps) => {
   const basename = useBasename();
 
-  const { to = `${basename}/`, ...rest } = props;
+  const {
+    icon = IconDashboard,
+    to = `${basename}/`,
+    name = "Dashboard",
+    ...rest
+  } = props;
 
-  return <NavItem {...rest} to={to} name="Dashboard" icon={IconDashboard} />;
+  return <MenuItemLink to={to} name={name} icon={icon} {...rest} />;
 };
 
 export interface DashboardMenuItemProps
-  extends Omit<NavItemProps, "to" | "name"> {
+  extends Omit<MenuItemLinkProps, "to" | "name"> {
   to?: string;
   name?: string;
 }

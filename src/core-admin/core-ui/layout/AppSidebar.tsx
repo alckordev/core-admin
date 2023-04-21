@@ -3,12 +3,12 @@ import { Box, Stack } from "@chakra-ui/react";
 import { NavContext } from "./Nav";
 
 export const AppSidebar = (props: AppSidebarProps) => {
-  const [visibleGroup, setVisibleGroup] = useState("");
+  // const [visibleGroup, setVisibleGroup] = useState("");
 
-  const navContextValues = {
-    visibleGroup,
-    setVisibleGroup,
-  };
+  // const navContextValues = {
+  //   visibleGroup,
+  //   setVisibleGroup,
+  // };
 
   return (
     <Box
@@ -23,12 +23,10 @@ export const AppSidebar = (props: AppSidebarProps) => {
       transition="all .3s ease-in-out"
       zIndex="1001"
     >
-      <Box>
-        <Stack spacing={0} direction="column" pt={3} pb={7}>
-          <NavContext.Provider value={navContextValues}>
-            {props.children}
-          </NavContext.Provider>
-        </Stack>
+      <Box pt={3} pb={7}>
+        {/* <NavContext.Provider value={navContextValues}> */}
+        <Box as="ul">{props.children}</Box>
+        {/* </NavContext.Provider> */}
       </Box>
     </Box>
   );

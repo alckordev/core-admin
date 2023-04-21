@@ -102,7 +102,7 @@ export interface ResourceDefinition {
   readonly hasEdit?: boolean;
   readonly hasShow?: boolean;
   readonly hasCreate?: boolean;
-  readonly icon?: any;
+  readonly icon?: ComponentType<TablerIconsProps | any>;
   readonly recordRepresentation?:
     | ReactElement
     | RecordToStringFunction

@@ -7,7 +7,7 @@ export * from "./Layout";
 export * from "./LoadingPage";
 export * from "./Logo";
 export * from "./Menu";
-export * from "./Nav";
+export * from "./MenuItemLink";
 export * from "./NotFound";
 export * from "./Notification";
 export * from "./NotificationMenu";

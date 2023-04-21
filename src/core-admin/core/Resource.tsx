@@ -6,6 +6,8 @@ import { ResourceContextProvider } from "./ResourceContextProvider";
 export const Resource = (props: ResourceProps) => {
   const { create: Create, edit: Edit, list: List, name, show: Show } = props;
 
+  console.log("Resource > name", name);
+
   return (
     <ResourceContextProvider value={name}>
       <Routes>

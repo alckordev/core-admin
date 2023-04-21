@@ -6,6 +6,8 @@ import { ToggleThemeButton } from "./Theme";
 import { UserMenu } from "./UserMenu";
 
 export const AppHeader = (props: AppHeaderProps) => {
+  const {} = props;
+
   const bgColor = useColorModeValue("white", "gray.800");
 
   return (

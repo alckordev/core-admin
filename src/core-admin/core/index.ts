@@ -8,4 +8,7 @@ export * from "./ResourceContext";
 export * from "./ResourceContextProvider";
 export * from "./ResourceDefinitionContext";
 export * from "./useConfigureRouterFromChildren";
+export * from "./useResourceContext";
+export * from "./useResourceDedinitions";
+export * from "./useResourceDefinition";
 export * from "./useResourceDefinitionContext";

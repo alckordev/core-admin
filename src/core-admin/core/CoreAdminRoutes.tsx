@@ -49,8 +49,8 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
     }
   }, [checkAuth, requireAuth]);
 
-  console.log("CoreAdminRoutes > resources", resources);
-  console.log("CoreAdminRoutes > status", status);
+  // console.log("CoreAdminRoutes > resources", resources);
+  // console.log("CoreAdminRoutes > status", status);
 
   if (status === "empty") {
     return <Ready />;
@@ -76,7 +76,7 @@ export const CoreAdminRoutes = (props: CoreAdminRoutesProps) => {
       <Route
         path="/*"
         element={
-          <Layout>
+          <Layout dashboard={dashboard}>
             <Routes>
               {/* Render custom routes with layout */}
               {customRoutesWithLayout}

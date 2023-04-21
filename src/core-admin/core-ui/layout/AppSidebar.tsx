@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Box, Stack } from "@chakra-ui/react";
-import { IconDashboard } from "@tabler/icons-react";
-import { NavContext, NavItem, NavTitle } from "./Nav";
+import { NavContext } from "./Nav";
 
 export const AppSidebar = (props: AppSidebarProps) => {
-  const { navigation } = props;
-
   const [visibleGroup, setVisibleGroup] = useState("");
 
   const navContextValues = {
@@ -29,14 +26,7 @@ export const AppSidebar = (props: AppSidebarProps) => {
       <Box>
         <Stack spacing={0} direction="column" pt={3} pb={7}>
           <NavContext.Provider value={navContextValues}>
-            <NavTitle name="Menu" />
-            <NavItem name="Dashboard" to="/" icon={IconDashboard} />
-            <NavItem
-              name="Test"
-              to="/test"
-              badge={{ color: "cyan", text: "New" }}
-            />
-            <NavTitle name="Pages" />
+            {props.children}
           </NavContext.Provider>
         </Stack>
       </Box>
@@ -45,5 +35,5 @@ export const AppSidebar = (props: AppSidebarProps) => {
 };
 
 export interface AppSidebarProps {
-  navigation?: object;
+  children?: ReactNode;
 }

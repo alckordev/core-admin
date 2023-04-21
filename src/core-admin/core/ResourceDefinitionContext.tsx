@@ -35,6 +35,12 @@ export const ResourceDefinitionContextProvider = ({
   const [definitions, setDefinitions] =
     useState<ResourceDefinitions>(defaultDefinitions);
 
+  // console.log(
+  //   "ResourceDefinitionContextProvider > defaultDefinitions",
+  //   defaultDefinitions
+  // );
+  // console.log("ResourceDefinitionContextProvider > definitions", definitions);
+
   const register = useCallback((config: ResourceDefinition) => {
     setDefinitions((previous) =>
       isEqual(previous[config.name], config)
@@ -54,6 +60,8 @@ export const ResourceDefinitionContextProvider = ({
     () => ({ definitions, register, unregister }),
     [definitions]
   );
+
+  // console.log("ResourceDefinitionContextProvider > contextValue", contextValue);
 
   return (
     <ResourceDefinitionContext.Provider value={contextValue}>

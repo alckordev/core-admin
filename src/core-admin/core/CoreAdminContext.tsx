@@ -18,6 +18,7 @@ import {
   LegacyAuthProvider,
   LegacyDataProvider,
 } from "../types";
+import { ResourceDefinitionContextProvider } from "./ResourceDefinitionContext";
 
 export const CoreAdminContext = (props: CoreAdminContextProps) => {
   const { authProvider, basename, children, dataProvider, queryClient } = props;
@@ -49,14 +50,18 @@ export const CoreAdminContext = (props: CoreAdminContextProps) => {
     [dataProvider]
   );
 
-  console.log("CoreAdminContext > authProvider", authProvider);
-  console.log("CoreAdminContext > finalAuthProvider", finalAuthProvider);
+  // console.log("CoreAdminContext > authProvider", authProvider);
+  // console.log("CoreAdminContext > finalAuthProvider", finalAuthProvider);
 
   return (
     <AuthContext.Provider value={finalAuthProvider}>
       <DataProviderContext.Provider value={finalDataProvider}>
         <QueryClientProvider client={finalQueryClient}>
-          <AdminRouter basename={basename}>{children}</AdminRouter>
+          <AdminRouter basename={basename}>
+            <ResourceDefinitionContextProvider>
+              {children}
+            </ResourceDefinitionContextProvider>
+          </AdminRouter>
         </QueryClientProvider>
       </DataProviderContext.Provider>
     </AuthContext.Provider>

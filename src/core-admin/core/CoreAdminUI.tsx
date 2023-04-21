@@ -36,6 +36,8 @@ export const CoreAdminUI = (props: CoreAdminUIProps) => {
     title = "Core Admin",
   } = props;
 
+  // console.log("CoreAdminUI > dashboard", dashboard);
+
   return (
     <Routes>
       {/*  */}

@@ -39,7 +39,7 @@ export interface WithPermissionsProps {
 const WithPermissions = (props: WithPermissionsProps) => {
   const { authParams, component, staticContext, ...rest } = props;
 
-  console.log("WithPermissions > component", component);
+  // console.log("WithPermissions > component", component);
 
   useAuthenticated(authParams);
 
